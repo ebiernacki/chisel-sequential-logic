@@ -8,7 +8,7 @@ import org.scalatest.flatspec.AnyFlatSpec
 class AnyCounterTest extends AnyFlatSpec with ChiselScalatestTester {
 
     "Counter Test" should s"work" in {
-        test(new AnyCounter(10, 14)){ dut => 
+        test(new AnyCounter(10, 4)){ dut => 
             dut.io.flag.expect(false.B)
 
             dut.clock.step(10)
@@ -23,7 +23,7 @@ class AnyCounterTest extends AnyFlatSpec with ChiselScalatestTester {
             dut.io.flag.expect(false.B)
 
         }
-        test(new AnyCounter(100, 15)).withAnnotations(Seq(WriteVcdAnnotation)){ dut => 
+        test(new AnyCounter(100, 7)).withAnnotations(Seq(WriteVcdAnnotation)){ dut => 
             dut.io.flag.expect(false.B)
 
             dut.clock.step(100)
