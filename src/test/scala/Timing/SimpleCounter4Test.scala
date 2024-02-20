@@ -7,7 +7,7 @@ import firrtl2.Utils
 
 class SimpleCounterTest extends AnyFlatSpec with ChiselScalatestTester {
     it should s"Test SimpleCounter" in {
-        test(new SimpleCounter).withAnnotations(Seq(WriteVcdAnnotation)) { dut =>
+        test(new SimpleCounter4).withAnnotations(Seq(WriteVcdAnnotation)) { dut =>
             dut.io.countMax.poke(15.U)
             
             for(i <- 0 until 30){
@@ -18,7 +18,7 @@ class SimpleCounterTest extends AnyFlatSpec with ChiselScalatestTester {
         }
     }
     it should s"Test SimpleCounter with reset" in {
-        test(new SimpleCounter).withAnnotations(Seq(WriteVcdAnnotation)) { dut =>
+        test(new SimpleCounter4).withAnnotations(Seq(WriteVcdAnnotation)) { dut =>
             dut.io.countMax.poke(15.U)
 
             for(i <- 0 until 25){
