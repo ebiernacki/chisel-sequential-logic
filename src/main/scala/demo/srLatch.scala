@@ -1,6 +1,31 @@
 package demo
 
 import chisel3._
+import chisel3.util._
+
+
+//This wont pass the test cases since it creates a combinational loop in the logic
+
+/* 
+S-----|‾‾‾\
+      |Nor \
+      |    /°/‾‾‾‾‾‾‾ Q
+------|___/ /
+     \     / 
+      \   /
+       \ /
+        X 
+       / \
+      /   \
+     /     \
+------|‾‾‾\ \
+      |Nor \ \
+      |    /°‾‾‾‾‾‾‾‾ ~Q
+R-----|___/
+
+
+*/
+
 
 class srLatch extends Module { 
     val io = IO(new Bundle{

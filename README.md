@@ -1,17 +1,24 @@
 # Chisel Sequential Logic Repository
 
-This assignment has 5 modules for you to complete. Complete them in the following order:
+This assignment has 3 modules for you to complete.
 
-- Simple Counter 
-
-- One Second Countdown
-  
-- Shot Clock Counter
+- SimpleCounter4
+    - This module should count up from 0 on every rising clock edge up to the input countMax value(set to be 4 bits). It should output the currentCount that can be looked at every clock tick. When the countMax value is reached, the currentCount should be set to 0, and counting should resume. Below is a diagram of how this can be done with a Mux and a Register
     
-- LED blink? 
+        <img src=".\counter.png" alt="Alt text" style="width: 80%; height: 80%;">
+
+- AnyCounter 
+    - This module should only set its output flag to true when the input number of clock ticks have passed, and then set it back to false. This module also needs the input of width, to set the width of your register (a larger number of input ticks would require a larger register to hold them)
+
+
+- ShotClock (24 seconds)
+    - This module has a "shot" input that should reset your shot clock back to 24, and an output of timeLeft on the shotclock which should decrement, along with the output boolean if there has been a shot clock violation (the shot clock hit 0)
+    - You can use your AnyCounter here, and for testing I recommend that you set your tick value around 100 so that your tests run quickly and so that you can see it on the waveform.
+
+
+There is also a demo package that has the demos from class on how to use registers and the non functional SRLatch(it creates a combinational loop), feel free to run it and take a look at the errors
+
     
-
-
 
 **Getting the Repo:**
 ```bash
@@ -19,12 +26,12 @@ $ https://github.com/ebiernacki/chisel-sequential-logic.git
 ```
 
 **Testing the Examples**
-- To test the Full Adder Module:
+- To test the SimpleCounter4 Module:
     ```bash
     sbt
-    testOnly xxxxx
+    testOnly Timing.SimpleCounter4Test
     ```
-- replace ```xxxx``` with the name of the test you want to run
+- replace ```SimpleCounter4Test``` with the name of the test you want to run
 
 
 

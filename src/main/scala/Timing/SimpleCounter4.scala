@@ -18,14 +18,8 @@ class SimpleCounter4 extends Module{
     //create a reg so it updates on every rising edge
     val cntReg = RegInit(0.U(4.W))
 
-    //this increments the reg every rising edge
-    cntReg := cntReg + 1.U
-
-
-    //check when to reset our value
-    when(cntReg === CNT_MAX) {
-        cntReg := 0.U
-    }
+    //Mux to choose increment or set to 0
+    cntReg := Mux(cntReg === CNT_MAX, 0.U, cntReg + 1.U)
 
     //finally connect to our io
     io.currentCount := cntReg

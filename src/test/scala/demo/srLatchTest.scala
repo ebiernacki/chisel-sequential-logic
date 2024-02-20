@@ -6,6 +6,9 @@ import chiseltest._
 import org.scalatest.flatspec.AnyFlatSpec
 
 //test reset (gives combo loop error)
+
+
+
 class srLatchTest extends AnyFlatSpec with ChiselScalatestTester {
     "Latch Test" should s"work" in {
         test(new srLatch){ dut => 
