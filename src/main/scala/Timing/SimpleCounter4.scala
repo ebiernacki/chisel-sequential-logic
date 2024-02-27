@@ -11,8 +11,20 @@ class SimpleCounter4 extends Module{
         val countMax = Input(UInt(4.W))
         val currentCount = Output(UInt(4.W))
     })
-
+    //set the max value we count up to
+    val CNT_MAX = io.countMax
 
 
     
+    //create a reg so it updates on every rising edge
+    val cntReg = RegInit(0.U(4.W))
+
+
+    //Mux to choose increment or set to 0
+    cntReg := Mux(cntReg === CNT_MAX, 0.U, cntReg + 1.U)
+
+    //finally connect to our io
+    io.currentCount := cntReg
+
+   
 }

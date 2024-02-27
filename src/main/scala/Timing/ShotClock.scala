@@ -16,7 +16,38 @@ class ShotClock extends Module{
         val shotClockViolation = Output(Bool())
     })
     
-    
+    val shotClock = RegInit(24.U(5.W)) // Initialize shot clock to 24
+    val scVio = RegInit(false.B) // Initialize no shotclock violation
+
+    //create a counter
+    val counter = Module(new AnyCounter(10, 4)) 
+    val scVioReset = ((shotClock === 0.U) && counter.io.flag) 
+
+    //when the counters flag is high, decrement the shotclock
+    // shotClock := Mux(counter.io.flag, shotClock - 1.U, shotClock) 
+    //REPLACE WITH MUX CASE
+    shotClock := MuxCase(shotClock, Seq(
+        (io.shot)      -> 24.U,
+        (counter.io.flag) -> (shotClock- 1.U),
+        (scVioReset)      -> 24.U))
+
+
+    //scViolation and scReset logic
+    scVio := Mux(scVioReset, true.B, false.B)
+
+
+    //REPLACED WITH MUXCASE
+    // when(scVioReset){
+    //     shotClock := 24.U
+    // }
+
+    // when(io.shot){
+    //     shotClock := 24.U
+    // }
+
+
+    io.timeLeft := shotClock
+    io.shotClockViolation := scVio
 
     
 }

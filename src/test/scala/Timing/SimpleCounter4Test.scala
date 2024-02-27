@@ -5,7 +5,7 @@ import chiseltest._
 import org.scalatest.flatspec.AnyFlatSpec
 import firrtl2.Utils
 
-class SimpleCounterTest extends AnyFlatSpec with ChiselScalatestTester {
+class SimpleCounter4Test extends AnyFlatSpec with ChiselScalatestTester {
     it should s"Test SimpleCounter" in {
         test(new SimpleCounter4).withAnnotations(Seq(WriteVcdAnnotation)) { dut =>
             dut.io.countMax.poke(15.U)
